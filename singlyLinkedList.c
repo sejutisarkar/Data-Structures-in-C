@@ -206,26 +206,75 @@ void MoveLastElement(struct Node** head){
   *head = temp;
 }
 //Intersection of two LinkedList
-list* Intersection(struct Node* a, struct Node* b){
-  if(a ==  NULL && b == NULL) return;
-  if(a->data < b->data){
-    return Intersection(a->next,b);
+// list* Intersection(struct Node* a, struct Node* b){
+//   if(a ==  NULL && b == NULL) return;
+//   if(a->data < b->data){
+//     return Intersection(a->next,b);
+//   }
+//   if(a->data > b->data){
+//     return Intersection(a, b->next);
+//   }
+//   list* temp = (struct Node *) malloc(sizeof(struct Node *));
+//   temp->data = a->data;
+//   temp->next = Intersection(a->next,b->next);
+//   return temp;
+// }
+//segregate the even and odd datas
+void segregateEvenOdd(struct Node** head){
+  list* evenStart=NULL, *evenEnd=NULL, *oddStart=NULL, *oddEnd=NULL;
+  list* curr = *head;
+
+  if(curr != NULL){
+    int val = curr->data;
+    if(val%2==0){
+      if(evenStart == NULL){
+        evenStart = curr;
+        evenEnd = evenStart;
+      }else{
+        evenEnd = curr;
+        evenEnd = evenEnd->next;
+      }
+    }else{
+      if(oddStart == NULL){
+        oddStart = curr;
+        oddEnd = oddStart;
+      }else{
+        oddEnd = curr;
+        oddEnd = oddEnd->next;
+      }
+    }
+    curr = curr->next;
   }
-  if(a->data > b->data){
-    return Intersection(a, b->next);
+  if(oddStart==NULL || evenStart==NULL) return;
+  //Add Oddlist after evenlist
+  evenEnd->next = oddStart;
+  oddEnd->next = NULL;
+
+  *head = evenStart;
+}
+//reverse
+void Reverse(struct Node** head){
+  list* prev = NULL;
+  list* next = NULL;
+  list* curr = *head;
+  while(curr != NULL){
+    //store the next
+    next = curr->next;
+    //Reverse
+    curr->next = prev;
+    //move the pointer one step ahead
+    prev = curr;
+    curr = next;
   }
-  list* temp = (struct Node *) malloc(sizeof(struct Node *));
-  temp->data = a->data;
-  temp->next = Intersection(a->next,b->next);
-  return temp;
+  *head = prev;
 }
 int main(){
   struct Node* head = NULL;
   push(&head,11);
   append(&head, 12);
   append(&head, 56);
-  append(&head,444);
-  append(&head, 4844);
+  append(&head,443);
+  append(&head, 7);
   append(&head,4440);
   insertAfter(head->next , 20);
   printf("\n The LinkedList is: ");
@@ -240,7 +289,8 @@ int main(){
   //swapNodes(&head, 11,4440);
   //pairWiseSwap(head);
   //MoveLastElement(&head);
-
+  //segregateEvenOdd(&head);
+  Reverse(&head);
   PrintList(head);
 
 }
