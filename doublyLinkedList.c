@@ -121,6 +121,55 @@ void DeleteAtAGivenposition(list** head,int n){
   if(current==NULL) return;
   Delete(head,current);
 }
+void swap(int a,int b){
+  int temp = a;
+  a = b;
+  b =temp;
+}
+void reverse(list* head){
+  list *left = head;
+  list *right = head;
+  while(right->next != NULL){
+    right = right->next;
+  }
+  while(left!=right && left->prev != right ){
+    swap(left->data,right->data);
+    left = left->next;
+    right = right->prev;
+  }
+}
+void removeDuplicates(list** head){
+  list* current = *head;
+  list* next;
+  if((*head) == NULL) return;
+  while(current->next != NULL){
+    if(current->data == current->next->data){
+      Delete(head,current->next);
+    }else{
+      current = current->next;
+    }
+  }
+}
+//remove duplicates from an unsorted LinkedList
+void removeDuplicatesUnSorted(list**head, int x){
+  if((*head) == NULL || (*head)->next == NULL) return;
+
+  list *current = *head;
+  list* ptr1, *ptr2;
+  for(ptr1 = *head; ptr1 != NULL;ptr1=ptr1->next){
+    ptr2 = ptr1->next;
+
+    while(ptr2!=NULL){
+      if(ptr1->data == ptr2->data){
+        list *next = ptr2->next;
+        Delete(head,ptr2);
+        ptr2= next;
+      }else{
+        ptr2=ptr2->next;
+      }
+    }
+  }
+}
 void PrintList(list* node){
   while(node != NULL){
     printf("%d ->",node->data);
@@ -133,9 +182,9 @@ int main(){
   // push(&head,11);
   append(&head,1);
   append(&head,2);
-  append(&head,3);
   append(&head,33);
-  append(&head,34);
+  append(&head,33);
+  append(&head,33);
   append(&head,355);
   // Delete(&head,head->next);
 //  Reverse(&head);
@@ -144,6 +193,8 @@ int main(){
   printf("\nLength is %d",CountNodes(head));
   printf("\n");
   // Swap(&head,2);
-  DeleteAtAGivenposition(&head,2);
+  // DeleteAtAGivenposition(&head,2);
+  // reverse(head);
+  removeDuplicates(&head);
   PrintList(head);
 }
