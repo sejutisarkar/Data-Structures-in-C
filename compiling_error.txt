@@ -1,0 +1,12 @@
+/home/sejuti/C/hello.c: In function ‘rotate’:
+/home/sejuti/C/hello.c:3:18: error: ‘n’ undeclared (first use in this function)
+   int temp = arr[n-1];
+                  ^
+/home/sejuti/C/hello.c:3:18: note: each undeclared identifier is reported only once for each function it appears in
+/home/sejuti/C/hello.c:7:12: error: ‘x’ undeclared (first use in this function)
+   arr[0] = x;
+            ^
+/home/sejuti/C/hello.c: In function ‘main’:
+/home/sejuti/C/hello.c:11:12: error: ‘arr’ undeclared (first use in this function)
+     rotate(arr,6);
+            ^
