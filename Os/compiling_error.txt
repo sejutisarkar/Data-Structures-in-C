@@ -1,0 +1,17 @@
+/home/sejuti/C/Os/priorityScheduling.c: In function ‘main’:
+/home/sejuti/C/Os/priorityScheduling.c:28:10: error: ‘p’ undeclared (first use in this function)
+     temp=p[i];
+          ^
+/home/sejuti/C/Os/priorityScheduling.c:28:10: note: each undeclared identifier is reported only once for each function it appears in
+/home/sejuti/C/Os/priorityScheduling.c:29:12: error: ‘pos’ undeclared (first use in this function)
+     p[i]=p[pos];
+            ^
+/home/sejuti/C/Os/priorityScheduling.c:38:5: error: expected ‘;’ before ‘}’ token
+     }
+     ^
+/home/sejuti/C/Os/priorityScheduling.c:48:9: error: ‘total’ undeclared (first use in this function)
+         total+=tat[i];
+         ^
+/home/sejuti/C/Os/priorityScheduling.c:52:5: error: ‘avg_tat’ undeclared (first use in this function)
+     avg_tat=total/n;     //average turnaround time
+     ^
